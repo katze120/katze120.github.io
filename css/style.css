@@ -283,6 +283,7 @@ article .entry ul,
 article .entry ol,
 article .entry dl,
 article .entry table,
+article .entry th,
 article .entry tr,
 article .entry td,
 article .entry iframe,
@@ -295,8 +296,8 @@ article .entry .video-container {
 }
 article .entry table {
   border-collapse: collapse;
-  padding: 5px;
 }
+article .entry th,
 article .entry tr,
 article .entry td {
   border: 1px solid #ddd;
