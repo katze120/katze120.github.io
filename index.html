@@ -71,7 +71,7 @@
     <div class="entry">
       
         <p>These were notes from late year. Just keeping an record.</p>
-<p><b>Differences between RHEL 7 &amp; 6</b></p>
+<p>Differences between RHEL 7 &amp; 6</p>
 <p><b>Basics</b></p>
 <table>
 <thead>
@@ -106,7 +106,6 @@
 </table>
 <p><b>systemd</b></p>
 <p><b>Services</b></p>
-<p><b>Basics</b></p>
 <table>
 <thead>
 <tr>
@@ -158,6 +157,58 @@
 </tr>
 </tbody>
 </table>
+<p><b>Runlevel</b></p>
+<table>
+<thead>
+<tr>
+<th>Features/Command/Config file</th>
+<th>RHEL 7</th>
+<th>RHEL 6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>View runlevel/target</td>
+<td>systemctl get-default</td>
+<td>runlevel</td>
+</tr>
+<tr>
+<td>Change runlevel/target</td>
+<td>systemctl isolate [name].target, init [runlevel]</td>
+<td>init [runlevel]</td>
+</tr>
+<tr>
+<td>default Runlevel</td>
+<td>/etc/systemd/system/default.target this is by default linked to the multi-user target)</td>
+<td>/etc/inittab</td>
+</tr>
+</tbody>
+</table>
+<p><b>Logging</b></p>
+<table>
+<thead>
+<tr>
+<th>Features/Command/Config file</th>
+<th>RHEL 7</th>
+<th>RHEL 6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Configure logging</td>
+<td>/etc/rsyslog.conf, /etc/rsyslog.d/*.conf, /etc/systemd/journald.conf</td>
+<td>/etc/rsyslog.conf</td>
+</tr>
+<tr>
+<td>View logs</td>
+<td>/var/log/, journalctl</td>
+<td>/var/log/</td>
+</tr>
+</tbody>
+</table>
+<p><b>File system</b><br>| Features/Command/Config file | RHEL 7 | RHEL 6 |<br>|———-|————-|————-|<br>| Default File System | XFS | EXT4 |<br>| File System Check | xfs_repair (XFS does not run a file system check at boot time) | e2fsck (File system check would get executed at boot time) |<br>| Format disk partition | mkfs.filesystem_type (ext4, xfs) | mkfs.filesystem_type (ext4, xfs) |<br>| Enlarge file system | xfs_growfs (xfs_growfs takes mount point as arguments) | resize2fs (resize2fs takes logical volume name as arguments) |<br>| Shrink file system | (XFS cannot currently be shrunk; copy desired data to a smaller file system) | resize2fs |</p>
+<p><b> Networking </b><br>| Features/Command/Config file | RHEL 7 | RHEL 6 |<br>|———-|————-|————-|<br>| Network Bonding | Teaming, /etc/sysconfig/network-scripts/ifcfg-team0, DEVICE=”team0”, DEVICETYPE=”Team” | Bonding, /etc/sysconfig/network-scripts/ifcfg-bond0, DEVICE=”bond0” |<br>| Network Startup | NetworkManager service | Network initscripts |<br>| default Network device naming | en<em> | eth</em> |</p>
+<p><b>Clustering</b><br>| Features/Command/Config file | RHEL 7 | RHEL 6 |<br>|———-|————-|————-|<br>| Cluster Resource Manager | Pacemaker | Pacemaker (6.5, 6.6) / Rgmanager |</p>
 
       
     </div>
