@@ -60,25 +60,104 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-02-09T06:56:23.000Z"><a href="/2016/02/09/hello-world/">2016-02-09</a></time>
+        <time datetime="2016-02-09T14:22:17.000Z"><a href="/2016/02/09/RHEL-7-differences-with-6/">2016-02-09</a></time>
       
       
   
-    <h1 class="title"><a href="/2016/02/09/hello-world/">Hello World</a></h1>
+    <h1 class="title"><a href="/2016/02/09/RHEL-7-differences-with-6/">RHEL 7 differences with 6</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <p>These were notes from late year. Just keeping an record.</p>
+<p><b>Differences between RHEL 7 &amp; 6</b></p>
+<p><b>Basics</b></p>
+<table>
+<thead>
+<tr>
+<th>Features/Command/Config file</th>
+<th style="text-align:center">RHEL 7</th>
+<th style="text-align:right">RHEL 6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Default file system</td>
+<td style="text-align:center">XFS</td>
+<td style="text-align:right">EXT4</td>
+</tr>
+<tr>
+<td>Kernel version</td>
+<td style="text-align:center">3.10.x-x</td>
+<td style="text-align:right">2.6.x-x</td>
+</tr>
+<tr>
+<td>Kernel Code Name</td>
+<td style="text-align:center">Maipo</td>
+<td style="text-align:right">Santiago</td>
+</tr>
+<tr>
+<td>Host Name Change</td>
+<td style="text-align:center">/etc/hostname</td>
+<td style="text-align:right">/etc/sysconfig/network</td>
+</tr>
+</tbody>
+</table>
+<p><b>systemd</b></p>
+<p><b>Services</b></p>
+<p><b>Basics</b></p>
+<table>
+<thead>
+<tr>
+<th>Features/Command/Config file</th>
+<th style="text-align:center">RHEL 7</th>
+<th style="text-align:right">RHEL 6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First Process</td>
+<td style="text-align:center">systemd (PID 1)</td>
+<td style="text-align:right">init (PID 1)</td>
+</tr>
+<tr>
+<td>List all services</td>
+<td style="text-align:center">systemctl list-unit-files –type=service, ls /{usr/lib,etc}/systemd/system/*.service</td>
+<td style="text-align:right">chkconfig –list, ls /etc/init.d/</td>
+</tr>
+<tr>
+<td>List running services</td>
+<td style="text-align:center">systemctl -t service –state=active</td>
+<td style="text-align:right">service –status=all</td>
+</tr>
+<tr>
+<td>Start/stop a service</td>
+<td style="text-align:center">systemctl start [name], systemctl stop [name]</td>
+<td style="text-align:right">service [name] start, service [name] stop</td>
+</tr>
+<tr>
+<td>Enable/Disable a service</td>
+<td style="text-align:center">systemctl enable [name], systemctl disable [name]</td>
+<td style="text-align:right">chkconfig [name] on, chkconfig [name] off</td>
+</tr>
+<tr>
+<td>Check if service is enabled</td>
+<td style="text-align:center">systemctl is-enabled [name]</td>
+<td style="text-align:right">chkconfig [name]</td>
+</tr>
+<tr>
+<td>View service status</td>
+<td style="text-align:center">systemctl status [name]</td>
+<td style="text-align:right">service [name] status</td>
+</tr>
+<tr>
+<td>Create service file or change config</td>
+<td style="text-align:center">systemctl daemon-reload</td>
+<td style="text-align:right">chkconfig –add [name]</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
@@ -138,7 +217,7 @@
       
       
   
-    <h1 class="title"><a href="/2016/02/08/RHEL-7/">RHEL 7</a></h1>
+    <h1 class="title"><a href="/2016/02/08/RHEL-7/">RHEL 7 new build</a></h1>
   
 
     </header>
@@ -166,7 +245,7 @@ systemctl restart network
 </ul>
 <p>TODO: setup in-house DNS &amp; DHCP server</p>
 <ul>
-<li><p>[Optional] Set up ssh key from Ansible Controller Machine. From this point onwards, subsequent steps can be done via Ansible.</p>
+<li><p>[Optional] Set up ssh key from Ansible Controller Machine. From this point onwards, subsequent steps can be done via Ansible. More details in “ansible” blog post.</p>
 </li>
 <li><p>Create local repo:</p>
 </li>
@@ -272,7 +351,6 @@ rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
 </li>
 </ul>
-<p>To be continued..</p>
 
       
     </div>
@@ -526,6 +604,11 @@ This opens a vi editor, that contains output of `git diff`, delete the change no
 
 use case: changes are made for multiple features, only stage the commit for certain feature
 
+<pre>git add</pre>
+git add -A stages All
+git add . stages new and modified, without deleted
+git add -u stages modified and deleted, without new
+
 <pre>git reflog</pre>
 display git command history
 
@@ -744,7 +827,7 @@ git commit
 <div class="widget tagcloud">
   <h3 class="title">Tag-Cloud</h3>
   <div class="entry">
-    <a href="/tags/Codility/" style="font-size: 20px;">Codility</a> <a href="/tags/Java/" style="font-size: 17.5px;">Java</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/NSX/" style="font-size: 10px;">NSX</a> <a href="/tags/Perl/" style="font-size: 17.5px;">Perl</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/RHEL7/" style="font-size: 10px;">RHEL7</a> <a href="/tags/Redhat/" style="font-size: 10px;">Redhat</a> <a href="/tags/SDN/" style="font-size: 10px;">SDN</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/ansible/" style="font-size: 10px;">ansible</a> <a href="/tags/configuration-management/" style="font-size: 10px;">configuration management</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/openstack/" style="font-size: 15px;">openstack</a>
+    <a href="/tags/Codility/" style="font-size: 20px;">Codility</a> <a href="/tags/Java/" style="font-size: 17.5px;">Java</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/NSX/" style="font-size: 10px;">NSX</a> <a href="/tags/Perl/" style="font-size: 17.5px;">Perl</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/RHEL7/" style="font-size: 12.5px;">RHEL7</a> <a href="/tags/Redhat/" style="font-size: 12.5px;">Redhat</a> <a href="/tags/SDN/" style="font-size: 10px;">SDN</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/ansible/" style="font-size: 10px;">ansible</a> <a href="/tags/configuration-management/" style="font-size: 10px;">configuration management</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/openstack/" style="font-size: 15px;">openstack</a>
   </div>
 </div>
 
@@ -755,7 +838,7 @@ git commit
   <ul class="entry">
     
       <li>
-        <a href="/2016/02/09/hello-world/">Hello World</a>
+        <a href="/2016/02/09/RHEL-7-differences-with-6/">RHEL 7 differences with 6</a>
       </li>
     
       <li>
@@ -763,7 +846,7 @@ git commit
       </li>
     
       <li>
-        <a href="/2016/02/08/RHEL-7/">RHEL 7</a>
+        <a href="/2016/02/08/RHEL-7/">RHEL 7 new build</a>
       </li>
     
       <li>
