@@ -299,6 +299,7 @@ article .entry table {
 article .entry tr,
 article .entry td {
   border: 1px solid #ddd;
+  padding: 10px;
 }
 article .entry blockquote {
   border-top: 1px solid #ddd;
