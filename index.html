@@ -77,30 +77,30 @@
 <thead>
 <tr>
 <th>Features/Command/Config file</th>
-<th style="text-align:center">RHEL 7</th>
-<th style="text-align:right">RHEL 6</th>
+<th>RHEL 7</th>
+<th>RHEL 6</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Default file system</td>
-<td style="text-align:center">XFS</td>
-<td style="text-align:right">EXT4</td>
+<td>XFS</td>
+<td>EXT4</td>
 </tr>
 <tr>
 <td>Kernel version</td>
-<td style="text-align:center">3.10.x-x</td>
-<td style="text-align:right">2.6.x-x</td>
+<td>3.10.x-x</td>
+<td>2.6.x-x</td>
 </tr>
 <tr>
 <td>Kernel Code Name</td>
-<td style="text-align:center">Maipo</td>
-<td style="text-align:right">Santiago</td>
+<td>Maipo</td>
+<td>Santiago</td>
 </tr>
 <tr>
 <td>Host Name Change</td>
-<td style="text-align:center">/etc/hostname</td>
-<td style="text-align:right">/etc/sysconfig/network</td>
+<td>/etc/hostname</td>
+<td>/etc/sysconfig/network</td>
 </tr>
 </tbody>
 </table>
@@ -111,50 +111,50 @@
 <thead>
 <tr>
 <th>Features/Command/Config file</th>
-<th style="text-align:center">RHEL 7</th>
-<th style="text-align:right">RHEL 6</th>
+<th>RHEL 7</th>
+<th>RHEL 6</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>First Process</td>
-<td style="text-align:center">systemd (PID 1)</td>
-<td style="text-align:right">init (PID 1)</td>
+<td>systemd (PID 1)</td>
+<td>init (PID 1)</td>
 </tr>
 <tr>
 <td>List all services</td>
-<td style="text-align:center">systemctl list-unit-files –type=service, ls /{usr/lib,etc}/systemd/system/*.service</td>
-<td style="text-align:right">chkconfig –list, ls /etc/init.d/</td>
+<td>systemctl list-unit-files –type=service, ls /{usr/lib,etc}/systemd/system/*.service</td>
+<td>chkconfig –list, ls /etc/init.d/</td>
 </tr>
 <tr>
 <td>List running services</td>
-<td style="text-align:center">systemctl -t service –state=active</td>
-<td style="text-align:right">service –status=all</td>
+<td>systemctl -t service –state=active</td>
+<td>service –status=all</td>
 </tr>
 <tr>
 <td>Start/stop a service</td>
-<td style="text-align:center">systemctl start [name], systemctl stop [name]</td>
-<td style="text-align:right">service [name] start, service [name] stop</td>
+<td>systemctl start [name], systemctl stop [name]</td>
+<td>service [name] start, service [name] stop</td>
 </tr>
 <tr>
 <td>Enable/Disable a service</td>
-<td style="text-align:center">systemctl enable [name], systemctl disable [name]</td>
-<td style="text-align:right">chkconfig [name] on, chkconfig [name] off</td>
+<td>systemctl enable [name], systemctl disable [name]</td>
+<td>chkconfig [name] on, chkconfig [name] off</td>
 </tr>
 <tr>
 <td>Check if service is enabled</td>
-<td style="text-align:center">systemctl is-enabled [name]</td>
-<td style="text-align:right">chkconfig [name]</td>
+<td>systemctl is-enabled [name]</td>
+<td>chkconfig [name]</td>
 </tr>
 <tr>
 <td>View service status</td>
-<td style="text-align:center">systemctl status [name]</td>
-<td style="text-align:right">service [name] status</td>
+<td>systemctl status [name]</td>
+<td>service [name] status</td>
 </tr>
 <tr>
 <td>Create service file or change config</td>
-<td style="text-align:center">systemctl daemon-reload</td>
-<td style="text-align:right">chkconfig –add [name]</td>
+<td>systemctl daemon-reload</td>
+<td>chkconfig –add [name]</td>
 </tr>
 </tbody>
 </table>
