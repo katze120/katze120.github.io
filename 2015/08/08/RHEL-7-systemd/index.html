@@ -120,13 +120,63 @@ enabled
 Redirecting to /bin/systemctl start  httpd.service
 </pre>
 
+<h3> Active/Deactivate a particular service at boot</h3><br><pre><br><br>[root@katzerhel7 ~]# systemctl enable httpd<br>ln -s ‘/usr/lib/systemd/system/httpd.service’ ‘/etc/systemd/system/multi-user.target.wants/httpd.service’<br><br>[root@katzerhel7 ~]# systemctl disable httpd<br>rm ‘/etc/systemd/system/multi-user.target.wants/httpd.service’<br><br></pre><br><br>Notes:<br><em> Some documentation suggests “httpd.service” but in recent versions of systemctl, by default .service suffix will be added
+</em> If we specify a path, the .mount suffix will be added<br><em> If we specify a device, the .device suffix will be added<br><br><h3>Mask/Unmask a service</h3><br><pre><br>[root@katzerhel7 ~]# systemctl mask httpd<br>ln -s ‘/dev/null’ ‘/etc/systemd/system/httpd.service’<br>[root@katzerhel7 ~]# systemctl unmask httpd<br>rm ‘/etc/systemd/system/httpd.service’<br></pre><br>Notes:
+</em> We can mask any service unit to prevent it from being started manually or by another service<br><em> We cannot enable a masked service, but we can mask an enabled service<br><br><h3>Check whether a particular service is activated at boot time</h3><br><pre><br>[root@katzerhel7 ~]# systemctl is-enabled httpd<br>enabled<br></pre><br><br>Notes: 
+</em> Possible outputs are: enabled, disabled, masked<br><br><h3>Start, stop, restart, reload a particular service<br><pre><br># systemctl start httpd<br># systemctl stop httpd<br># systemctl restart httpd<br># systemctl reload httpd<br></pre><br><br>Notes:<br>* Similar to “service” in RHEL 6 &amp; 5, the reload option is not available for all the services<br><br><h3>Check whether a particular service is running</h3>
 
+<pre>
+# systemctl is-active httpd
+active
+</pre>
+
+<p></p><h3>Check the status of particular service</h3><p></p>
+<pre> # systemctl status httpd
+httpd.service - The Apache HTTP Server
+   Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled)
+  Drop-In: /usr/lib/systemd/system/httpd.service.d
+           └─openstack-dashboard.conf
+   Active: active (running) since Wed 2016-01-27 19:11:32 EST; 2 weeks 3 days ago
+ Main PID: 4315 (httpd)
+   Status: "Total requests: 0; Current requests/sec: 0; Current traffic:   0 B/sec"
+   CGroup: /system.slice/httpd.service
+           ├─ 4315 /usr/sbin/httpd -DFOREGROUND
+           ├─31018 /usr/sbin/httpd -DFOREGROUND
+           ├─31019 /usr/sbin/httpd -DFOREGROUND
+           ├─31020 /usr/sbin/httpd -DFOREGROUND
+           ├─31021 /usr/sbin/httpd -DFOREGROUND
+           ├─31022 /usr/sbin/httpd -DFOREGROUND
+           ├─31023 /usr/sbin/httpd -DFOREGROUND
+           ├─31024 /usr/sbin/httpd -DFOREGROUND
+           ├─31025 /usr/sbin/httpd -DFOREGROUND
+           ├─31026 /usr/sbin/httpd -DFOREGROUND
+           ├─31027 /usr/sbin/httpd -DFOREGROUND
+           └─31028 /usr/sbin/httpd -DFOREGROUND
+
+Feb 14 05:21:01 katzerhel7 systemd[1]: Started The Apache HTTP Server.
+Warning: Journal has been rotated since unit was started. Log output is incomplete or unavailable.
+</pre>
+
+<p></p><h3>Creating and modifying systemd unit files</h3><br>TODO<p></p>
+<p></p><h3>List all the units (services, mount points, devices) with their status and description</h3><p></p>
+<pre>
+# systemctl
+# systemctl list-unit-files
+</pre>
+
+
+</h3>
       
     </div>
     <footer>
       
         
         
+  
+  <div class="tags">
+    <a href="/tags/Linux/">Linux</a>, <a href="/tags/RHEL7/">RHEL7</a>, <a href="/tags/Redhat/">Redhat</a>, <a href="/tags/systemd/">systemd</a>
+  </div>
+
         
   <div class="addthis addthis_toolbox addthis_default_style">
     
@@ -207,7 +257,7 @@ Redirecting to /bin/systemctl start  httpd.service
 <div class="widget tagcloud">
   <h3 class="title">Tag-Cloud</h3>
   <div class="entry">
-    <a href="/tags/Codility/" style="font-size: 20px;">Codility</a> <a href="/tags/Java/" style="font-size: 17.5px;">Java</a> <a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a> <a href="/tags/NSX/" style="font-size: 10px;">NSX</a> <a href="/tags/Perl/" style="font-size: 17.5px;">Perl</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/RHEL7/" style="font-size: 12.5px;">RHEL7</a> <a href="/tags/Redhat/" style="font-size: 12.5px;">Redhat</a> <a href="/tags/SDN/" style="font-size: 10px;">SDN</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/ansible/" style="font-size: 10px;">ansible</a> <a href="/tags/configuration-management/" style="font-size: 10px;">configuration management</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/openstack/" style="font-size: 15px;">openstack</a>
+    <a href="/tags/Codility/" style="font-size: 20px;">Codility</a> <a href="/tags/Java/" style="font-size: 18px;">Java</a> <a href="/tags/Linux/" style="font-size: 14px;">Linux</a> <a href="/tags/NSX/" style="font-size: 10px;">NSX</a> <a href="/tags/Perl/" style="font-size: 18px;">Perl</a> <a href="/tags/Python/" style="font-size: 18px;">Python</a> <a href="/tags/RHEL7/" style="font-size: 14px;">RHEL7</a> <a href="/tags/Redhat/" style="font-size: 14px;">Redhat</a> <a href="/tags/SDN/" style="font-size: 10px;">SDN</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/ansible/" style="font-size: 10px;">ansible</a> <a href="/tags/configuration-management/" style="font-size: 10px;">configuration management</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/openstack/" style="font-size: 16px;">openstack</a> <a href="/tags/systemd/" style="font-size: 10px;">systemd</a>
   </div>
 </div>
 
