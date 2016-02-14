@@ -367,28 +367,11 @@ Please, find your login credentials stored in the keystonerc_admin in your home 
 </table>
 <h2> Command Examples</h2>
 
-<p></p><h3>Create a new LV</h3><p></p>
-<pre> # lvcreate -n "lv_test" -L 1g vg_rhel</pre>
+<h3>Create a new LV</h3><br><pre> # lvcreate -n “lv_test” -L 1g vg_rhel</pre><br><br><h3>Create a new XFS file system</h3><br><pre> # mkfs.xfs /dev/vg_rhel/lv_test</pre><br><br><h3>Increase the LV size</h3><br><pre> # lvextend -L +2G /dev/vg_rhel/lv_test</pre><br><br><h3>Increase the file system size</h3><br><pre>xfs_growfs [filesystempath]</pre><br><br>Notes:<br><em> This is only possible for a mounted file system
+</em> Reducing file system size is not possible even in unmounted status.<br><br><h3>Repair a file system</h3><br><pre># unmount /dev/vg_rhel/lv_test<br># xfs_repair /dev/vg_rhel/lv_test<br></pre><br><br><h3>Assign a label</h3><br><pre> # umount /dev/vg_rhel/lv_test<br># xfs_admin -L “Label” /dev/vg_rhel/lv_test<br></pre><br><br><h3>Read the file system label</h3>
 
-<p></p><h3>Create a new XFS file system</h3><p></p>
-<pre> # mkfs.xfs /dev/vg_rhel/lv_test</pre>
-
-<p></p><h3>Increase the LV size</h3><p></p>
-<pre> # lvextend -L +2G /dev/vg_rhel/lv_test</pre>
-
-<p></p><h3>Increase the file system size</h3><p></p>
-<pre>xfs_growfs [filesystempath]</pre>
-
-<p>Notes:</p>
-<ul>
-<li>This is only possible for a mounted file system</li>
-<li>Reducing file system size is not possible even in unmounted status.</li>
-</ul>
-<p></p><h3>Repair a file system</h3><p></p>
-<pre># unmount /dev/vg_rhel/lv_test
-# xfs_repair /dev/vg_rhel/lv_test
+<pre># xfs_admin -l /dev/vg_rhel/lv_test
 </pre>
-
 
 
       
