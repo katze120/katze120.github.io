@@ -318,6 +318,78 @@ Please, find your login credentials stored in the keystonerc_admin in your home 
     <header>
       
         <div class="icon"></div>
+        <time datetime="2015-08-08T08:58:57.000Z"><a href="/2015/08/08/RHEL-7-systemd/">2015-08-08</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/08/08/RHEL-7-systemd/">RHEL 7 systemd</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <h3> Overview of systemd</h3>
+
+<ul>
+<li>New service manager for Linux</li>
+<li>Replaces System V init and Upstart</li>
+<li>Backward compatability for init scripts</li>
+<li>Benefits:</li>
+</ul>
+<ol>
+<li>Fast boot and shutdown times because of parallelization of boot services and dependency tracking</li>
+<li>Autospawn and respawn of services</li>
+<li>Tight integration with cgroups</li>
+<li>Logs early kernel boot up messages</li>
+</ol>
+<h3> Basics</h3>
+
+<p>The global systemd configuration is stored in the /etc/systemd directory.</p>
+<p>The service configuration files are located in the /usr/lib/systemd/system directory</p>
+<p>Custom service configuration files are stored in the /etc/systemd/system directory</p>
+<h3>Get the current release of systemd</h3>
+
+<pre>
+$ systemctl --version
+systemd 208
++PAM +LIBWRAP +AUDIT +SELINUX +IMA +SYSVINIT +LIBCRYPTSETUP +GCRYPT +ACL +XZ
+</pre>
+
+<h3>Service Management</h3>
+
+<p>Some service and chkconfig commands continue to work, and will be translated to systemd equivalents.</p>
+<pre>
+
+# chkconfig httpd
+Note: Forwarding request to 'systemctl is-enabled httpd.service'.
+enabled
+
+# service httpd start
+Redirecting to /bin/systemctl start  httpd.service
+</pre>
+
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2012-10-27T04:00:00.000Z"><a href="/2012/10/27/2012-10-27-ordering-in-restaurant/">2012-10-27</a></time>
       
       
@@ -409,7 +481,7 @@ Please, find your login credentials stored in the keystonerc_admin in your home 
   <div class="widget tag">
     <h3 class="title">Archives</h3>
     <div class="entry">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">Februar 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">Oktober 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">Oktober 2012</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">Februar 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">Oktober 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">Oktober 2012</a></li></ul>
     </div>
   </div>
 
@@ -432,15 +504,15 @@ Please, find your login credentials stored in the keystonerc_admin in your home 
   <ul class="entry">
     
       <li>
-        <a href="/2016/02/09/RHEL-7-differences-with-6/">RHEL 7 differences with 6</a>
+        <a href="/2016/08/07/RHEL-7-differences-with-6/">RHEL 7 differences with 6</a>
+      </li>
+    
+      <li>
+        <a href="/2016/02/09/RHEL-7/">RHEL 7 new build</a>
       </li>
     
       <li>
         <a href="/2016/02/08/NSX/">NSX</a>
-      </li>
-    
-      <li>
-        <a href="/2016/02/08/RHEL-7/">RHEL 7 new build</a>
       </li>
     
       <li>

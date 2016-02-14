@@ -3,16 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Codility-Time Complexity-PermMissingElem-Python | katze&#39;s bits and bytes</title>
+  <title>RHEL 7 systemd | katze&#39;s bits and bytes</title>
   <meta name="author" content="Keshi Tan">
   
-  <meta name="description" content="123456def solution(A):    sum=0    N=len(A)    for i in range (0,N):        sum=sum+A[i]    return (N+2)*(N+1)/2-sum
-https://codility.com/demo/results">
+  <meta name="description" content="Overview of systemd
+
+
+New service manager for Linux
+Replaces System V init and Upstart
+Backward compatability for init scripts
+Benefits:
+
+
+Fast boot a">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Codility-Time Complexity-PermMissingElem-Python"/>
+  <meta property="og:title" content="RHEL 7 systemd"/>
   <meta property="og:site_name" content="katze&#39;s bits and bytes"/>
 
   
@@ -62,18 +70,56 @@ https://codility.com/demo/results">
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-10-25T11:07:10.000Z"><a href="/2015/10/25/Codility-Time-Complexity-PermMissingElem-Python/">2015-10-25</a></time>
+        <time datetime="2015-08-08T08:58:57.000Z"><a href="/2015/08/08/RHEL-7-systemd/">2015-08-08</a></time>
       
       
   
-    <h1 class="title">Codility-Time Complexity-PermMissingElem-Python</h1>
+    <h1 class="title">RHEL 7 systemd</h1>
   
 
     </header>
     <div class="entry">
       
-        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span><span class="params">(A)</span>:</span></span><br><span class="line">    sum=<span class="number">0</span></span><br><span class="line">    N=len(A)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range (<span class="number">0</span>,N):</span><br><span class="line">        sum=sum+A[i]</span><br><span class="line">    <span class="keyword">return</span> (N+<span class="number">2</span>)*(N+<span class="number">1</span>)/<span class="number">2</span>-sum</span><br></pre></td></tr></table></figure>
-<p><a href="https://codility.com/demo/results/trainingXBFT3C-UUY/" target="_blank" rel="external">https://codility.com/demo/results/trainingXBFT3C-UUY/</a></p>
+        <h3> Overview of systemd</h3>
+
+<ul>
+<li>New service manager for Linux</li>
+<li>Replaces System V init and Upstart</li>
+<li>Backward compatability for init scripts</li>
+<li>Benefits:</li>
+</ul>
+<ol>
+<li>Fast boot and shutdown times because of parallelization of boot services and dependency tracking</li>
+<li>Autospawn and respawn of services</li>
+<li>Tight integration with cgroups</li>
+<li>Logs early kernel boot up messages</li>
+</ol>
+<h3> Basics</h3>
+
+<p>The global systemd configuration is stored in the /etc/systemd directory.</p>
+<p>The service configuration files are located in the /usr/lib/systemd/system directory</p>
+<p>Custom service configuration files are stored in the /etc/systemd/system directory</p>
+<h3>Get the current release of systemd</h3>
+
+<pre>
+$ systemctl --version
+systemd 208
++PAM +LIBWRAP +AUDIT +SELINUX +IMA +SYSVINIT +LIBCRYPTSETUP +GCRYPT +ACL +XZ
+</pre>
+
+<h3>Service Management</h3>
+
+<p>Some service and chkconfig commands continue to work, and will be translated to systemd equivalents.</p>
+<pre>
+
+# chkconfig httpd
+Note: Forwarding request to 'systemctl is-enabled httpd.service'.
+enabled
+
+# service httpd start
+Redirecting to /bin/systemctl start  httpd.service
+</pre>
+
 
       
     </div>
@@ -81,11 +127,6 @@ https://codility.com/demo/results">
       
         
         
-  
-  <div class="tags">
-    <a href="/tags/Codility/">Codility</a>, <a href="/tags/Python/">Python</a>
-  </div>
-
         
   <div class="addthis addthis_toolbox addthis_default_style">
     
@@ -126,7 +167,7 @@ https://codility.com/demo/results">
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<div class="fb-comments" data-href="http://katze120.github.io/2015/10/25/Codility-Time-Complexity-PermMissingElem-Python/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+<div class="fb-comments" data-href="http://katze120.github.io/2015/08/08/RHEL-7-systemd/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
       
   
 </section>
