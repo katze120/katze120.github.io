@@ -347,7 +347,40 @@ or
 
 <h3 id="Get_details_about_all_the_devices"><a href="#Get_details_about_all_the_devices" class="headerlink" title="Get details about all the devices"></a>Get details about all the devices</h3><pre># nmcli d show</pre>
 
-<h2 id="Use_cases"><a href="#Use_cases" class="headerlink" title="Use cases"></a>Use cases</h2><h3 id="Configure_a_static_IP"><a href="#Configure_a_static_IP" class="headerlink" title="Configure a static IP"></a>Configure a static IP</h3>
+<h2 id="Use_cases"><a href="#Use_cases" class="headerlink" title="Use cases"></a>Use cases</h2><h3 id="Configure_a_static_IP"><a href="#Configure_a_static_IP" class="headerlink" title="Configure a static IP"></a>Configure a static IP</h3><ol>
+<li><p>Input the configuration </p>
+<pre># vi /etc/sysconfig/network-scripts/ifcfg-enX</pre>
+or
+<pre># nmtui edit enX</pre>
+</li>
+<li><p>Restart the network interface</p>
+<pre># nmcli d disconnect enX
+# nmcli d connect enX
+</pre>
+or
+<pre># nmcli c down enX
+# nmcli c up enX
+</pre>
+or
+<pre># systemctl restart NetworkManager</pre>
+
+</li>
+</ol>
+<p>Notes:</p>
+<ul>
+<li>Changes to resolv.conf seems to need NetworkManager restart to take effect</li>
+</ul>
+<ol>
+<li>Verify<pre># ip a</pre>
+
+</li>
+</ol>
+<h3 id="Configure_a_second_IP_on_the_existing_network_connection_profile"><a href="#Configure_a_second_IP_on_the_existing_network_connection_profile" class="headerlink" title="Configure a second IP on the existing network connection profile"></a>Configure a second IP on the existing network connection profile</h3><pre>
+# nmcli con mode enX +ipv4.addresses "xx.xx.xx.xx/xx"
+# nmcli con up xnX
+</pre>
+
+
       
     </div>
     <footer>
