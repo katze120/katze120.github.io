@@ -352,7 +352,28 @@ active
 Startup finished in 506ms (kernel) + 3.041s (initrd) + 1min 40.098s (userspace) = 1min 43.647s
 </pre>
 
-<p></p><h3>Get the time spent by each task during the boot process</h3><br>[root@katzerhel7 ~]# systemd-analyze blame<br>    1min 23.484s httpd.service<br>    1min 10.258s openstack-nova-api.service<br>     1min 3.790s openstack-nova-scheduler.service<br>     1min 2.758s neutron-server.service<br>      1min 679ms rabbitmq-server.service<br>      1min 219ms openstack-nova-conductor.service<br>      1min 143ms openstack-nova-consoleauth.service<br>         53.145s openstack-keystone.service<br>         52.911s openstack-nova-cert.service<br>         51.354s openstack-glance-api.service<br>         49.284s neutron-ovs-cleanup.service<br>         43.473s mongod.service<br>         43.390s openstack-glance-registry.service<br>         24.589s mariadb.service<br>         19.855s openstack-nova-compute.service<br>          9.666s kdump.service<br>…<br><p></p>
+<p></p><h3>Get the time spent by each task during the boot process</h3><p></p>
+<pre>
+[root@katzerhel7 ~]# systemd-analyze blame
+    1min 23.484s httpd.service
+    1min 10.258s openstack-nova-api.service
+     1min 3.790s openstack-nova-scheduler.service
+     1min 2.758s neutron-server.service
+      1min 679ms rabbitmq-server.service
+      1min 219ms openstack-nova-conductor.service
+      1min 143ms openstack-nova-consoleauth.service
+         53.145s openstack-keystone.service
+         52.911s openstack-nova-cert.service
+         51.354s openstack-glance-api.service
+         49.284s neutron-ovs-cleanup.service
+         43.473s mongod.service
+         43.390s openstack-glance-registry.service
+         24.589s mariadb.service
+         19.855s openstack-nova-compute.service
+          9.666s kdump.service
+...
+</pre>
+
 <p></p><h3>Get the list of the critical chain of tasks during the boot process</h3><p></p>
 <pre>
 [root@katzerhel7 ~]# systemd-analyze critical-chain
@@ -402,7 +423,41 @@ httpd.service +1min 23.484s
 $ systemctl list-dependencies httpd.service
 </pre>
 
-<h2>Targets/Run levels</h2><br>This is how systemd targets alight with traditional runlevels:<br><pre><br><br>Traditional runlevel      New target name     Symbolically linked to…<br>Runlevel 0           |    runlevel0.target -&gt; poweroff.target<br>Runlevel 1           |    runlevel1.target -&gt; rescue.target<br>Runlevel 2           |    runlevel2.target -&gt; multi-user.target<br>Runlevel 3           |    runlevel3.target -&gt; multi-user.target<br>Runlevel 4           |    runlevel4.target -&gt; multi-user.target<br>Runlevel 5           |    runlevel5.target -&gt; graphical.target<br>Runlevel 6           |    runlevel6.target -&gt; reboot.target<br></pre><br><h2>Journal analysis</h2>
+<p></p><h2>Targets/Run levels</h2><br>This is how systemd targets alight with traditional runlevels:<p></p>
+<pre>
+
+Traditional runlevel      New target name     Symbolically linked to...
+Runlevel 0           |    runlevel0.target -> poweroff.target
+Runlevel 1           |    runlevel1.target -> rescue.target
+Runlevel 2           |    runlevel2.target -> multi-user.target
+Runlevel 3           |    runlevel3.target -> multi-user.target
+Runlevel 4           |    runlevel4.target -> multi-user.target
+Runlevel 5           |    runlevel5.target -> graphical.target
+Runlevel 6           |    runlevel6.target -> reboot.target
+</pre>
+<h2>Journal analysis</h2>
+<h3>Get the content of the systemd journal</h3>
+<pre>$ journalctl</pre>
+
+<p>Notes:</p>
+<ul>
+<li>To make journalctl work for non-root user, /run/log/journal/[xxxx]/system.journal needs to be readable by the user. Check /usr/lib/tmpfiles.d/systemd.conf too</li>
+<li>By default, journald logs are stored in the /run/log/journal directory and disappear after a reboot</li>
+</ul>
+<p></p><h3>Get all the events related to particular process in the journal</h3><p></p>
+<pre>
+$ journalctl /sbin/crond
+$ journalctl -u crond
+</pre>
+
+<p></p><h3>View kernal messages from current boot</h3><p></p>
+<pre> $ journalctl -k</pre>
+
+<p></p><h3>Follow journal messages</h3><p></p>
+<pre>$ journalctl -f</pre>
+
+<p></p><h3>Get all the events with a particular syslog priority</h3><p></p>
+<pre>$ journalctl -p err</pre>
 
 </h3>
       
