@@ -284,6 +284,134 @@ Please, find your login credentials stored in the keystonerc_admin in your home 
     <header>
       
         <div class="icon"></div>
+        <time datetime="2015-08-09T10:31:54.000Z"><a href="/2015/08/09/RHEL-7-networking/">2015-08-09</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/08/09/RHEL-7-networking/">RHEL 7 networking</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-08-09T10:31:41.000Z"><a href="/2015/08/09/RHEL-7-xfs/">2015-08-09</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/08/09/RHEL-7-xfs/">RHEL 7 xfs</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>XFS is now the default file system. XFS was already fully supported in RHEL6 but was not the default.</p>
+<h2>Reference Table for ext4 and XFS Commands</h2>
+
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>ext4</th>
+<th>xfs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Creating a file system</td>
+<td>mkfs.ext4</td>
+<td>mkfs.xfs</td>
+</tr>
+<tr>
+<td>Mounting a file system</td>
+<td>mount</td>
+<td>mount</td>
+</tr>
+<tr>
+<td>Resizing a file system</td>
+<td>resize2fs</td>
+<td>xfs_growfs (increase only)</td>
+</tr>
+<tr>
+<td>Repairing a file system</td>
+<td>e2fsck</td>
+<td>xfs_repair</td>
+</tr>
+<tr>
+<td>Changing the label on a file system</td>
+<td>e2label</td>
+<td>xfs_admin -L</td>
+</tr>
+</tbody>
+</table>
+<h2> Command Examples</h2>
+
+<p></p><h3>Create a new LV</h3><p></p>
+<pre> # lvcreate -n "lv_test" -L 1g vg_rhel</pre>
+
+<p></p><h3>Create a new XFS file system</h3><p></p>
+<pre> # mkfs.xfs /dev/vg_rhel/lv_test</pre>
+
+<p></p><h3>Increase the LV size</h3><p></p>
+<pre> # lvextend -L +2G /dev/vg_rhel/lv_test</pre>
+
+<p></p><h3>Increase the file system size</h3><p></p>
+<pre>xfs_growfs [filesystempath]</pre>
+
+<p>Notes:</p>
+<ul>
+<li>This is only possible for a mounted file system</li>
+<li>Reducing file system size is not possible even in unmounted status.</li>
+</ul>
+<p></p><h3>Repair a file system</h3><p></p>
+<pre># unmount /dev/vg_rhel/lv_test
+# xfs_repair /dev/vg_rhel/lv_test
+</pre>
+
+
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2015-08-08T08:58:57.000Z"><a href="/2015/08/08/RHEL-7-systemd/">2015-08-08</a></time>
       
       
@@ -758,44 +886,13 @@ $ journalctl -u crond
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2012-10-24T04:00:00.000Z"><a href="/2012/10/24/2012-10-24-beginning/">2012-10-24</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2012/10/24/2012-10-24-beginning/">my technical blog!</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>This will be my technical blog to record my experience as Linux Engineer. </p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
     <a href="/page/2/" class="alignleft prev">Vorherige Seite</a>
   
+  
+    <a href="/page/4/" class="alignright next">Nächste Seite</a>
   
   <div class="clearfix"></div>
 </nav></div></div>
@@ -833,7 +930,7 @@ $ journalctl -u crond
 <div class="widget tagcloud">
   <h3 class="title">Tag-Cloud</h3>
   <div class="entry">
-    <a href="/tags/Codility/" style="font-size: 20px;">Codility</a> <a href="/tags/Java/" style="font-size: 18px;">Java</a> <a href="/tags/Linux/" style="font-size: 14px;">Linux</a> <a href="/tags/NSX/" style="font-size: 10px;">NSX</a> <a href="/tags/Perl/" style="font-size: 18px;">Perl</a> <a href="/tags/Python/" style="font-size: 18px;">Python</a> <a href="/tags/RHEL7/" style="font-size: 14px;">RHEL7</a> <a href="/tags/Redhat/" style="font-size: 14px;">Redhat</a> <a href="/tags/SDN/" style="font-size: 10px;">SDN</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/ansible/" style="font-size: 10px;">ansible</a> <a href="/tags/configuration-management/" style="font-size: 10px;">configuration management</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/openstack/" style="font-size: 16px;">openstack</a> <a href="/tags/systemd/" style="font-size: 10px;">systemd</a>
+    <a href="/tags/Codility/" style="font-size: 20px;">Codility</a> <a href="/tags/Java/" style="font-size: 17.5px;">Java</a> <a href="/tags/Linux/" style="font-size: 17.5px;">Linux</a> <a href="/tags/NSX/" style="font-size: 10px;">NSX</a> <a href="/tags/NetworkManager/" style="font-size: 10px;">NetworkManager</a> <a href="/tags/Perl/" style="font-size: 17.5px;">Perl</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/RHEL7/" style="font-size: 17.5px;">RHEL7</a> <a href="/tags/Redhat/" style="font-size: 17.5px;">Redhat</a> <a href="/tags/SDN/" style="font-size: 10px;">SDN</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/ansible/" style="font-size: 10px;">ansible</a> <a href="/tags/configuration-management/" style="font-size: 10px;">configuration management</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/openstack/" style="font-size: 15px;">openstack</a> <a href="/tags/systemd/" style="font-size: 10px;">systemd</a> <a href="/tags/xfs/" style="font-size: 10px;">xfs</a>
   </div>
 </div>
 
