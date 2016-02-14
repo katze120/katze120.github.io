@@ -454,7 +454,6 @@ systemd 208
 
 <p>Some service and chkconfig commands continue to work, and will be translated to systemd equivalents.</p>
 <pre>
-
 # chkconfig httpd
 Note: Forwarding request to 'systemctl is-enabled httpd.service'.
 enabled
@@ -463,7 +462,7 @@ enabled
 Redirecting to /bin/systemctl start  httpd.service
 </pre>
 
-<h3> Active/Deactivate a particular service at boot</h3><br><pre><br><br>[root@katzerhel7 ~]# systemctl enable httpd<br>ln -s ‘/usr/lib/systemd/system/httpd.service’ ‘/etc/systemd/system/multi-user.target.wants/httpd.service’<br><br>[root@katzerhel7 ~]# systemctl disable httpd<br>rm ‘/etc/systemd/system/multi-user.target.wants/httpd.service’<br><br></pre><br><br>Notes:<br><em> Some documentation suggests httpd.service but in recent versions of systemctl, by default .service suffix will be added
+<h3> Active/Deactivate a particular service at boot</h3><br><pre><br>[root@katzerhel7 ~]# systemctl enable httpd<br>ln -s ‘/usr/lib/systemd/system/httpd.service’ ‘/etc/systemd/system/multi-user.target.wants/httpd.service’<br><br>[root@katzerhel7 ~]# systemctl disable httpd<br>rm ‘/etc/systemd/system/multi-user.target.wants/httpd.service’<br></pre><br><br>Notes:<br><br><em> Some documentation suggests httpd.service but in recent versions of systemctl, by default .service suffix will be added
 </em> If we specify a path, the .mount suffix will be added<br><em> If we specify a device, the .device suffix will be added<br><br><h3>Mask/Unmask a service</h3><br><pre><br>[root@katzerhel7 ~]# systemctl mask httpd<br>ln -s ‘/dev/null’ ‘/etc/systemd/system/httpd.service’<br>[root@katzerhel7 ~]# systemctl unmask httpd<br>rm ‘/etc/systemd/system/httpd.service’<br></pre><br>Notes:
 </em> We can mask any service unit to prevent it from being started manually or by another service<br><em> We cannot enable a masked service, but we can mask an enabled service<br><br><h3>Check whether a particular service is activated at boot time</h3><br><pre><br>[root@katzerhel7 ~]# systemctl is-enabled httpd<br>enabled<br></pre><br><br>Notes: 
 </em> Possible outputs are: enabled, disabled, masked<br><br><h3>Start, stop, restart, reload a particular service</h3><br><pre><br># systemctl start httpd<br># systemctl stop httpd<br># systemctl restart httpd<br># systemctl reload httpd<br></pre><br><br>Notes:<br>* Similar to “service” in RHEL 6 &amp; 5, the reload option is not available for all the services<br><br><h3>Check whether a particular service is running</h3>
