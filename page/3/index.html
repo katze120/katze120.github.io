@@ -294,7 +294,7 @@ Please, find your login credentials stored in the keystonerc_admin in your home 
     </header>
     <div class="entry">
       
-        <h3> Overview of systemd</h3>
+        <h2> Overview of systemd</h2>
 
 <ul>
 <li>New service manager for Linux</li>
@@ -308,7 +308,7 @@ Please, find your login credentials stored in the keystonerc_admin in your home 
 <li>Tight integration with cgroups</li>
 <li>Logs early kernel boot up messages</li>
 </ol>
-<h3> Basics</h3>
+<h2> Basics</h2>
 
 <p>The global systemd configuration is stored in the /etc/systemd directory.</p>
 <p>The service configuration files are located in the /usr/lib/systemd/system directory</p>
@@ -321,7 +321,7 @@ systemd 208
 +PAM +LIBWRAP +AUDIT +SELINUX +IMA +SYSVINIT +LIBCRYPTSETUP +GCRYPT +ACL +XZ
 </pre>
 
-<h3>Service Management</h3>
+<h2>Service Management</h2>
 
 <p>Some service and chkconfig commands continue to work, and will be translated to systemd equivalents.</p>
 <pre>
@@ -344,42 +344,66 @@ Redirecting to /bin/systemctl start  httpd.service
 active
 </pre>
 
-<p></p><h3>Check the status of particular service</h3><p></p>
-<pre> # systemctl status httpd
-httpd.service - The Apache HTTP Server
-   Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled)
-  Drop-In: /usr/lib/systemd/system/httpd.service.d
-           └─openstack-dashboard.conf
-   Active: active (running) since Wed 2016-01-27 19:11:32 EST; 2 weeks 3 days ago
- Main PID: 4315 (httpd)
-   Status: "Total requests: 0; Current requests/sec: 0; Current traffic:   0 B/sec"
-   CGroup: /system.slice/httpd.service
-           ├─ 4315 /usr/sbin/httpd -DFOREGROUND
-           ├─31018 /usr/sbin/httpd -DFOREGROUND
-           ├─31019 /usr/sbin/httpd -DFOREGROUND
-           ├─31020 /usr/sbin/httpd -DFOREGROUND
-           ├─31021 /usr/sbin/httpd -DFOREGROUND
-           ├─31022 /usr/sbin/httpd -DFOREGROUND
-           ├─31023 /usr/sbin/httpd -DFOREGROUND
-           ├─31024 /usr/sbin/httpd -DFOREGROUND
-           ├─31025 /usr/sbin/httpd -DFOREGROUND
-           ├─31026 /usr/sbin/httpd -DFOREGROUND
-           ├─31027 /usr/sbin/httpd -DFOREGROUND
-           └─31028 /usr/sbin/httpd -DFOREGROUND
+<h3>Check the status of particular service</h3><br><pre> # systemctl status httpd<br>httpd.service - The Apache HTTP Server<br>   Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled)<br>  Drop-In: /usr/lib/systemd/system/httpd.service.d<br>           └─openstack-dashboard.conf<br>   Active: active (running) since Wed 2016-01-27 19:11:32 EST; 2 weeks 3 days ago<br> Main PID: 4315 (httpd)<br>   Status: “Total requests: 0; Current requests/sec: 0; Current traffic:   0 B/sec”<br>   CGroup: /system.slice/httpd.service<br>           ├─ 4315 /usr/sbin/httpd -DFOREGROUND<br>           ├─31018 /usr/sbin/httpd -DFOREGROUND<br>           ├─31019 /usr/sbin/httpd -DFOREGROUND<br>           ├─31020 /usr/sbin/httpd -DFOREGROUND<br>           ├─31021 /usr/sbin/httpd -DFOREGROUND<br>           ├─31022 /usr/sbin/httpd -DFOREGROUND<br>           ├─31023 /usr/sbin/httpd -DFOREGROUND<br>           ├─31024 /usr/sbin/httpd -DFOREGROUND<br>           ├─31025 /usr/sbin/httpd -DFOREGROUND<br>           ├─31026 /usr/sbin/httpd -DFOREGROUND<br>           ├─31027 /usr/sbin/httpd -DFOREGROUND<br>           └─31028 /usr/sbin/httpd -DFOREGROUND<br><br>Feb 14 05:21:01 katzerhel7 systemd[1]: Started The Apache HTTP Server.<br>Warning: Journal has been rotated since unit was started. Log output is incomplete or unavailable.<br></pre><br><br><h3>Creating and modifying systemd unit files</h3><br>TODO<br><br><h3>List all the units (services, mount points, devices) with their status and description</h3><br><pre><br># systemctl<br># systemctl list-unit-files<br></pre><br><br><h3>Get the list of service that failed at boot</h3><br><pre><br># systemctl –failed<br></pre><br><br><h3>Get the status of a service on a remote server<br><pre><br>[katze@katzerhel7 ~]$ systemctl -H katzerhel7a status sshd<br>sshd.service - OpenSSH server daemon<br>   Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled)<br>   Active: active (running) since Tue 2016-02-09 00:41:09 EST; 5 days ago<br> Main PID: 1110<br>   CGroup: /system.slice/sshd.service<br><br></pre><br><br><h3>Get all the configuration details about a service</h3><br><pre><br>[katze@katzerhel7 ~]$ systemctl show httpd<br>Id=httpd.service<br>Names=httpd.service<br>Requires=basic.target<br>Wants=system.slice<br>WantedBy=multi-user.target<br>Conflicts=shutdown.target<br>Before=shutdown.target multi-user.target<br>After=network.target remote-fs.target nss-lookup.target memcached.service system<br>Description=The Apache HTTP Server<br>…<br></pre><br><br><h2>Boot process</h2><br><h3>Get the boot process duration</h3>
 
-Feb 14 05:21:01 katzerhel7 systemd[1]: Started The Apache HTTP Server.
-Warning: Journal has been rotated since unit was started. Log output is incomplete or unavailable.
-</pre>
-
-<p></p><h3>Creating and modifying systemd unit files</h3><br>TODO<p></p>
-<p></p><h3>List all the units (services, mount points, devices) with their status and description</h3><p></p>
 <pre>
-# systemctl
-# systemctl list-unit-files
+[root@katzerhel7 ~]# systemd-analyze
+Startup finished in 506ms (kernel) + 3.041s (initrd) + 1min 40.098s (userspace) = 1min 43.647s
 </pre>
 
+<p></p><h3>Get the time spent by each task during the boot process</h3><br>[root@katzerhel7 ~]# systemd-analyze blame<br>    1min 23.484s httpd.service<br>    1min 10.258s openstack-nova-api.service<br>     1min 3.790s openstack-nova-scheduler.service<br>     1min 2.758s neutron-server.service<br>      1min 679ms rabbitmq-server.service<br>      1min 219ms openstack-nova-conductor.service<br>      1min 143ms openstack-nova-consoleauth.service<br>         53.145s openstack-keystone.service<br>         52.911s openstack-nova-cert.service<br>         51.354s openstack-glance-api.service<br>         49.284s neutron-ovs-cleanup.service<br>         43.473s mongod.service<br>         43.390s openstack-glance-registry.service<br>         24.589s mariadb.service<br>         19.855s openstack-nova-compute.service<br>          9.666s kdump.service<br>…<br><p></p>
+<p></p><h3>Get the list of the critical chain of tasks during the boot process</h3><p></p>
+<pre>
+[root@katzerhel7 ~]# systemd-analyze critical-chain
+The time after the unit is active or started is printed after the "@" character.
+The time the unit takes to start is printed after the "+" character.
 
-</h3>
+multi-user.target @1min 40.035s
+└─httpd.service @16.547s +1min 23.484s
+  └─remote-fs.target @16.070s
+    └─remote-fs-pre.target @16.070s
+      └─iscsi-shutdown.service @15.070s +958ms
+        └─network.target @15.069s
+          └─network.service @9.362s +5.706s
+            └─iptables.service @6.740s +2.617s
+              └─basic.target @6.731s
+                └─paths.target @6.731s
+                  └─brandbot.path @6.731s
+                    └─sysinit.target @6.701s
+                      └─systemd-update-utmp.service @6.662s +35ms
+                        └─auditd.service @6.285s +361ms
+..
+</pre>
+
+<p></p><h3>Get the list of the critical chain for a particular service</h3><p></p>
+<pre>
+[root@katzerhel7 ~]# systemd-analyze critical-chain httpd.service
+The time after the unit is active or started is printed after the "@" character.
+The time the unit takes to start is printed after the "+" character.
+
+httpd.service +1min 23.484s
+└─remote-fs.target @16.070s
+  └─remote-fs-pre.target @16.070s
+    └─iscsi-shutdown.service @15.070s +958ms
+      └─network.target @15.069s
+        └─network.service @9.362s +5.706s
+          └─iptables.service @6.740s +2.617s
+...
+</pre>
+
+<p></p><h3>Get the list of dependencies</h3><p></p>
+<pre>
+# systemctl list-dependencies
+</pre>
+
+<p></p><h3>Get the list of dependencies for a particular service</h3><p></p>
+<pre>
+$ systemctl list-dependencies httpd.service
+</pre>
+
+<h2>Targets/Run levels</h2><br>This is how systemd targets alight with traditional runlevels:<br><pre><br><br>Traditional runlevel      New target name     Symbolically linked to…<br>Runlevel 0           |    runlevel0.target -&gt; poweroff.target<br>Runlevel 1           |    runlevel1.target -&gt; rescue.target<br>Runlevel 2           |    runlevel2.target -&gt; multi-user.target<br>Runlevel 3           |    runlevel3.target -&gt; multi-user.target<br>Runlevel 4           |    runlevel4.target -&gt; multi-user.target<br>Runlevel 5           |    runlevel5.target -&gt; graphical.target<br>Runlevel 6           |    runlevel6.target -&gt; reboot.target<br></pre><br>Source: <a href="https://access.redhat.com/articles/754933" target="_blank" rel="external">https://access.redhat.com/articles/754933</a><br><h2>Journal analysis</h2>
+
+</h3></h3>
       
     </div>
     <footer>
