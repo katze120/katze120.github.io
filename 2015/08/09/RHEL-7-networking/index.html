@@ -6,7 +6,12 @@
   <title>RHEL 7 networking | katze&#39;s bits and bytes</title>
   <meta name="author" content="Keshi Tan">
   
-  <meta name="description" content="Command examplesnmcli help">
+  <meta name="description" content="Command examplesnmcli help# nmcli -h
+
+Network Manager general status
+# nmcli general
+STATE      CONNECTIVITY  WIFI-HW  WIFI     WWAN-HW  WWAN
+connecte">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -71,7 +76,60 @@
     </header>
     <div class="entry">
       
-        <h2 id="Command_examples"><a href="#Command_examples" class="headerlink" title="Command examples"></a>Command examples</h2><h3 id="nmcli_help"><a href="#nmcli_help" class="headerlink" title="nmcli help"></a>nmcli help</h3>
+        <h2 id="Command_examples"><a href="#Command_examples" class="headerlink" title="Command examples"></a>Command examples</h2><h3 id="nmcli_help"><a href="#nmcli_help" class="headerlink" title="nmcli help"></a>nmcli help</h3><pre># nmcli -h</pre>
+
+<h3 id="Network_Manager_general_status"><a href="#Network_Manager_general_status" class="headerlink" title="Network Manager general status"></a>Network Manager general status</h3><pre>
+# nmcli general
+STATE      CONNECTIVITY  WIFI-HW  WIFI     WWAN-HW  WWAN
+connected  full          enabled  enabled  enabled  enabled
+</pre>
+or
+<pre>
+# nmcli -p g
+=============================================================
+                    NetworkManager status
+=============================================================
+STATE      CONNECTIVITY  WIFI-HW  WIFI     WWAN-HW  WWAN
+-------------------------------------------------------------
+connected  full          enabled  enabled  enabled  enabled
+</pre>
+
+<h3 id="Check_MM_logging_level"><a href="#Check_MM_logging_level" class="headerlink" title="Check MM logging level"></a>Check MM logging level</h3><pre># nmcli g logging</pre>
+
+<h3 id="Check_hostname"><a href="#Check_hostname" class="headerlink" title="Check hostname"></a>Check hostname</h3><pre># hostname</pre>
+or
+<pre># nmcli g hostname</pre>
+or
+<pre># hostnamectl</pre>
+
+<h3 id="Change_hostname"><a href="#Change_hostname" class="headerlink" title="Change hostname"></a>Change hostname</h3><pre># hostnamectl set-hostname katzerhel7a</pre>
+or
+<pre># nmcli g hostname katzerhel7a</pre>
+
+<p>Notes:</p>
+<ul>
+<li>The nmcli command does not update output of hostnamectl, but hostnamectl command can update output of nmcli</li>
+<li>Cross verify with output of <code>hostname</code> and /etc/hostname</li>
+</ul>
+<h3 id="Verify_network_is_started"><a href="#Verify_network_is_started" class="headerlink" title="Verify network is started"></a>Verify network is started</h3><pre># nmcli networking
+
+# systemctl is-active NetworkManager
+
+# systemctl status NetworkManager
+
+</pre>
+
+<h3 id="Stop_network_connectivity"><a href="#Stop_network_connectivity" class="headerlink" title="Stop network connectivity"></a>Stop network connectivity</h3><pre># nmcli n off</pre>
+
+<h3 id="Get_the_list_of_all_the_available_network_configurations"><a href="#Get_the_list_of_all_the_available_network_configurations" class="headerlink" title="Get the list of all the available network configurations"></a>Get the list of all the available network configurations</h3><pre># nmcli connection
+</pre>
+
+<h3 id="Verify_network_interface_status"><a href="#Verify_network_interface_status" class="headerlink" title="Verify network interface status"></a>Verify network interface status</h3><pre># nmcli dev
+</pre>
+
+<h3 id="Get_details_about_all_the_devices"><a href="#Get_details_about_all_the_devices" class="headerlink" title="Get details about all the devices"></a>Get details about all the devices</h3><pre># nmcli d show</pre>
+
+<h2 id="Use_cases"><a href="#Use_cases" class="headerlink" title="Use cases"></a>Use cases</h2><h3 id="Configure_a_static_IP"><a href="#Configure_a_static_IP" class="headerlink" title="Configure a static IP"></a>Configure a static IP</h3>
       
     </div>
     <footer>
