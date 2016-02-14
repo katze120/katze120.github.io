@@ -6,16 +6,13 @@
   <title>RHEL 7 systemd | katze&#39;s bits and bytes</title>
   <meta name="author" content="Keshi Tan">
   
-  <meta name="description" content="Overview of systemd
+  <meta name="description" content="Reference: https://access.redhat.com/articles/754933
+ Overview of systemd
 
 
 New service manager for Linux
 Replaces System V init and Upstart
-Backward compatability for init scripts
-Benefits:
-
-
-Fast boot a">
+Backward ">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -80,7 +77,8 @@ Fast boot a">
     </header>
     <div class="entry">
       
-        <h2> Overview of systemd</h2>
+        <p>Reference: <a href="https://access.redhat.com/articles/754933" target="_blank" rel="external">https://access.redhat.com/articles/754933</a></p>
+<h2> Overview of systemd</h2>
 
 <ul>
 <li>New service manager for Linux</li>
@@ -120,8 +118,9 @@ enabled
 Redirecting to /bin/systemctl start  httpd.service
 </pre>
 
-<h3> Active/Deactivate a particular service at boot</h3><br><pre><br><br>[root@katzerhel7 ~]# systemctl enable httpd<br>ln -s ‘/usr/lib/systemd/system/httpd.service’ ‘/etc/systemd/system/multi-user.target.wants/httpd.service’<br><br>[root@katzerhel7 ~]# systemctl disable httpd<br>rm ‘/etc/systemd/system/multi-user.target.wants/httpd.service’<br><br></pre><br><br>Notes:<br><em> Some documentation suggests “httpd.service” but in recent versions of systemctl, by default .service suffix will be added
-</em> If we specify a path, the .mount suffix will be added<br><em> If we specify a device, the .device suffix will be added<br><br><h3>Mask/Unmask a service</h3><br><pre><br>[root@katzerhel7 ~]# systemctl mask httpd<br>ln -s ‘/dev/null’ ‘/etc/systemd/system/httpd.service’<br>[root@katzerhel7 ~]# systemctl unmask httpd<br>rm ‘/etc/systemd/system/httpd.service’<br></pre><br>Notes:
+<h3> Active/Deactivate a particular service at boot</h3><br><pre><br><br>[root@katzerhel7 ~]# systemctl enable httpd<br>ln -s ‘/usr/lib/systemd/system/httpd.service’ ‘/etc/systemd/system/multi-user.target.wants/httpd.service’<br><br>[root@katzerhel7 ~]# systemctl disable httpd<br>rm ‘/etc/systemd/system/multi-user.target.wants/httpd.service’<br><br></pre><br><br>Notes:<br><br><em> Some documentation suggests “httpd.service” but in recent versions of systemctl, by default .service suffix will be added
+
+</em> If we specify a path, the .mount suffix will be added<br><br><em> If we specify a device, the .device suffix will be added<br><br><h3>Mask/Unmask a service</h3><br><pre><br>[root@katzerhel7 ~]# systemctl mask httpd<br>ln -s ‘/dev/null’ ‘/etc/systemd/system/httpd.service’<br>[root@katzerhel7 ~]# systemctl unmask httpd<br>rm ‘/etc/systemd/system/httpd.service’<br></pre><br>Notes:
 </em> We can mask any service unit to prevent it from being started manually or by another service<br><em> We cannot enable a masked service, but we can mask an enabled service<br><br><h3>Check whether a particular service is activated at boot time</h3><br><pre><br>[root@katzerhel7 ~]# systemctl is-enabled httpd<br>enabled<br></pre><br><br>Notes: 
 </em> Possible outputs are: enabled, disabled, masked<br><br><h3>Start, stop, restart, reload a particular service<br><pre><br># systemctl start httpd<br># systemctl stop httpd<br># systemctl restart httpd<br># systemctl reload httpd<br></pre><br><br>Notes:<br>* Similar to “service” in RHEL 6 &amp; 5, the reload option is not available for all the services<br><br><h3>Check whether a particular service is running</h3>
 
@@ -187,7 +186,7 @@ httpd.service +1min 23.484s
 $ systemctl list-dependencies httpd.service
 </pre>
 
-<h2>Targets/Run levels</h2><br>This is how systemd targets alight with traditional runlevels:<br><pre><br><br>Traditional runlevel      New target name     Symbolically linked to…<br>Runlevel 0           |    runlevel0.target -&gt; poweroff.target<br>Runlevel 1           |    runlevel1.target -&gt; rescue.target<br>Runlevel 2           |    runlevel2.target -&gt; multi-user.target<br>Runlevel 3           |    runlevel3.target -&gt; multi-user.target<br>Runlevel 4           |    runlevel4.target -&gt; multi-user.target<br>Runlevel 5           |    runlevel5.target -&gt; graphical.target<br>Runlevel 6           |    runlevel6.target -&gt; reboot.target<br></pre><br>Source: <a href="https://access.redhat.com/articles/754933" target="_blank" rel="external">https://access.redhat.com/articles/754933</a><br><h2>Journal analysis</h2>
+<h2>Targets/Run levels</h2><br>This is how systemd targets alight with traditional runlevels:<br><pre><br><br>Traditional runlevel      New target name     Symbolically linked to…<br>Runlevel 0           |    runlevel0.target -&gt; poweroff.target<br>Runlevel 1           |    runlevel1.target -&gt; rescue.target<br>Runlevel 2           |    runlevel2.target -&gt; multi-user.target<br>Runlevel 3           |    runlevel3.target -&gt; multi-user.target<br>Runlevel 4           |    runlevel4.target -&gt; multi-user.target<br>Runlevel 5           |    runlevel5.target -&gt; graphical.target<br>Runlevel 6           |    runlevel6.target -&gt; reboot.target<br></pre><br><h2>Journal analysis</h2>
 
 </h3></h3>
       
