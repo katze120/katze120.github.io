@@ -60,255 +60,6 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2016-08-07T13:22:17.000Z"><a href="/2016/08/07/RHEL-7-differences-with-6/">2016-08-07</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2016/08/07/RHEL-7-differences-with-6/">RHEL 7 differences with 6</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <p>These were notes from late year. Just keeping an record.</p>
-<p>Differences between RHEL 7 &amp; 6</p>
-<p><b>Basics</b></p>
-<table>
-<thead>
-<tr>
-<th>Features/Command/Config file</th>
-<th>RHEL 7</th>
-<th>RHEL 6</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Default file system</td>
-<td>XFS</td>
-<td>EXT4</td>
-</tr>
-<tr>
-<td>Kernel version</td>
-<td>3.10.x-x</td>
-<td>2.6.x-x</td>
-</tr>
-<tr>
-<td>Kernel Code Name</td>
-<td>Maipo</td>
-<td>Santiago</td>
-</tr>
-<tr>
-<td>Host Name Change</td>
-<td>/etc/hostname</td>
-<td>/etc/sysconfig/network</td>
-</tr>
-</tbody>
-</table>
-<p><b>systemd</b></p>
-<p><b>Services</b></p>
-<table>
-<thead>
-<tr>
-<th>Features/Command/Config file</th>
-<th>RHEL 7</th>
-<th>RHEL 6</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>First Process</td>
-<td>systemd (PID 1)</td>
-<td>init (PID 1)</td>
-</tr>
-<tr>
-<td>List all services</td>
-<td>systemctl list-unit-files –type=service, ls /{usr/lib,etc}/systemd/system/*.service</td>
-<td>chkconfig –list, ls /etc/init.d/</td>
-</tr>
-<tr>
-<td>List running services</td>
-<td>systemctl -t service –state=active</td>
-<td>service –status=all</td>
-</tr>
-<tr>
-<td>Start/stop a service</td>
-<td>systemctl start [name], systemctl stop [name]</td>
-<td>service [name] start, service [name] stop</td>
-</tr>
-<tr>
-<td>Enable/Disable a service</td>
-<td>systemctl enable [name], systemctl disable [name]</td>
-<td>chkconfig [name] on, chkconfig [name] off</td>
-</tr>
-<tr>
-<td>Check if service is enabled</td>
-<td>systemctl is-enabled [name]</td>
-<td>chkconfig [name]</td>
-</tr>
-<tr>
-<td>View service status</td>
-<td>systemctl status [name]</td>
-<td>service [name] status</td>
-</tr>
-<tr>
-<td>Create service file or change config</td>
-<td>systemctl daemon-reload</td>
-<td>chkconfig –add [name]</td>
-</tr>
-</tbody>
-</table>
-<p><b>Runlevel</b></p>
-<table>
-<thead>
-<tr>
-<th>Features/Command/Config file</th>
-<th>RHEL 7</th>
-<th>RHEL 6</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>View runlevel/target</td>
-<td>systemctl get-default</td>
-<td>runlevel</td>
-</tr>
-<tr>
-<td>Change runlevel/target</td>
-<td>systemctl isolate [name].target, init [runlevel]</td>
-<td>init [runlevel]</td>
-</tr>
-<tr>
-<td>default Runlevel</td>
-<td>/etc/systemd/system/default.target (this is by default linked to the multi-user target)</td>
-<td>/etc/inittab</td>
-</tr>
-</tbody>
-</table>
-<p><b>Logging</b></p>
-<table>
-<thead>
-<tr>
-<th>Features/Command/Config file</th>
-<th>RHEL 7</th>
-<th>RHEL 6</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Configure logging</td>
-<td>/etc/rsyslog.conf, /etc/rsyslog.d/*.conf, /etc/systemd/journald.conf</td>
-<td>/etc/rsyslog.conf</td>
-</tr>
-<tr>
-<td>View logs</td>
-<td>/var/log/, journalctl</td>
-<td>/var/log/</td>
-</tr>
-</tbody>
-</table>
-<p><b>File system</b></p>
-<table>
-<thead>
-<tr>
-<th>Features/Command/Config file</th>
-<th>RHEL 7</th>
-<th>RHEL 6</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Default File System</td>
-<td>XFS</td>
-<td>EXT4</td>
-</tr>
-<tr>
-<td>File System Check</td>
-<td>xfs_repair (XFS does not run a file system check at boot time)</td>
-<td>e2fsck (File system check would get executed at boot time)</td>
-</tr>
-<tr>
-<td>Format disk partition</td>
-<td>mkfs.filesystem_type (ext4, xfs)</td>
-<td>mkfs.filesystem_type (ext4, xfs)</td>
-</tr>
-<tr>
-<td>Enlarge file system</td>
-<td>xfs_growfs (xfs_growfs takes mount point as arguments)</td>
-<td>resize2fs (resize2fs takes logical volume name as arguments)</td>
-</tr>
-<tr>
-<td>Shrink file system</td>
-<td>(XFS cannot currently be shrunk; copy desired data to a smaller file system)</td>
-<td>resize2fs</td>
-</tr>
-</tbody>
-</table>
-<p><b> Networking </b></p>
-<table>
-<thead>
-<tr>
-<th>Features/Command/Config file</th>
-<th>RHEL 7</th>
-<th>RHEL 6</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Network Bonding</td>
-<td>Teaming, /etc/sysconfig/network-scripts/ifcfg-team0, DEVICE=”team0”, DEVICETYPE=”Team”</td>
-<td>Bonding, /etc/sysconfig/network-scripts/ifcfg-bond0, DEVICE=”bond0”</td>
-</tr>
-<tr>
-<td>Network Startup</td>
-<td>NetworkManager service</td>
-<td>Network initscripts</td>
-</tr>
-<tr>
-<td>default Network device naming</td>
-<td>en*</td>
-<td>eth*</td>
-</tr>
-</tbody>
-</table>
-<p><b>Clustering</b></p>
-<table>
-<thead>
-<tr>
-<th>Features/Command/Config file</th>
-<th>RHEL 7</th>
-<th>RHEL 6</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Cluster Resource Manager</td>
-<td>Pacemaker</td>
-<td>Pacemaker (6.5, 6.6) / Rgmanager</td>
-</tr>
-</tbody>
-</table>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
         <time datetime="2016-02-10T02:22:15.000Z"><a href="/2016/02/09/RHEL-7/">2016-02-09</a></time>
       
       
@@ -914,6 +665,40 @@ git commit
 
 
 
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-10-27T15:08:40.000Z"><a href="/2015/10/27/Codility-Counting-Elements-FrogRiverOne-Perl/">2015-10-27</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/10/27/Codility-Counting-Elements-FrogRiverOne-Perl/">Codility-Counting Elements-FrogRiverOne-Perl</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">sub solution &#123;</span><br><span class="line">    my (<span class="variable">$X</span>, @A)=@<span class="number">_</span>;</span><br><span class="line">    my <span class="variable">$complete</span>=<span class="variable">$X</span>*(<span class="variable">$X</span>+<span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line">    my <span class="variable">$current</span>=<span class="number">0</span>;</span><br><span class="line">    my <span class="variable">$mark</span>=();</span><br><span class="line">    for (my <span class="variable">$i</span>=<span class="number">1</span>; <span class="variable">$i</span>&lt;=<span class="variable">$X</span>; <span class="variable">$i</span>++)&#123;</span><br><span class="line">        <span class="variable">$mark</span>=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    for (my <span class="variable">$i</span>=<span class="number">0</span>; <span class="variable">$i</span>&lt;scalar(@A); <span class="variable">$i</span>++)&#123;</span><br><span class="line">        if (<span class="variable">$mark</span>[<span class="variable">$A</span>[<span class="variable">$i</span>]]==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="variable">$current</span>+=<span class="variable">$A</span>[<span class="variable">$i</span>];</span><br><span class="line">            <span class="variable">$mark</span>[<span class="variable">$A</span>[<span class="variable">$i</span>]]=<span class="number">1</span>;</span><br><span class="line">            if (<span class="variable">$current</span>==<span class="variable">$complete</span>)&#123;</span><br><span class="line">                return <span class="variable">$i</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://codility.com/demo/results/trainingBUWSAN-Z2N/" target="_blank" rel="external">https://codility.com/demo/results/trainingBUWSAN-Z2N/</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
 
 <nav id="pagination">
   
@@ -944,7 +729,7 @@ git commit
   <div class="widget tag">
     <h3 class="title">Archives</h3>
     <div class="entry">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">Februar 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">Oktober 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">Oktober 2012</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">Februar 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">Oktober 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">Oktober 2012</a></li></ul>
     </div>
   </div>
 
@@ -967,10 +752,6 @@ git commit
   <ul class="entry">
     
       <li>
-        <a href="/2016/08/07/RHEL-7-differences-with-6/">RHEL 7 differences with 6</a>
-      </li>
-    
-      <li>
         <a href="/2016/02/09/RHEL-7/">RHEL 7 new build</a>
       </li>
     
@@ -984,6 +765,10 @@ git commit
     
       <li>
         <a href="/2016/02/07/cleaned-up-blog-repo/">cleaned up blog repo</a>
+      </li>
+    
+      <li>
+        <a href="/2016/02/07/githug/">githug</a>
       </li>
     
   </ul>

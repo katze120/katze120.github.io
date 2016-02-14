@@ -60,40 +60,6 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-10-27T15:08:40.000Z"><a href="/2015/10/27/Codility-Counting-Elements-FrogRiverOne-Perl/">2015-10-27</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2015/10/27/Codility-Counting-Elements-FrogRiverOne-Perl/">Codility-Counting Elements-FrogRiverOne-Perl</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">sub solution &#123;</span><br><span class="line">    my (<span class="variable">$X</span>, @A)=@<span class="number">_</span>;</span><br><span class="line">    my <span class="variable">$complete</span>=<span class="variable">$X</span>*(<span class="variable">$X</span>+<span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line">    my <span class="variable">$current</span>=<span class="number">0</span>;</span><br><span class="line">    my <span class="variable">$mark</span>=();</span><br><span class="line">    for (my <span class="variable">$i</span>=<span class="number">1</span>; <span class="variable">$i</span>&lt;=<span class="variable">$X</span>; <span class="variable">$i</span>++)&#123;</span><br><span class="line">        <span class="variable">$mark</span>=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    for (my <span class="variable">$i</span>=<span class="number">0</span>; <span class="variable">$i</span>&lt;scalar(@A); <span class="variable">$i</span>++)&#123;</span><br><span class="line">        if (<span class="variable">$mark</span>[<span class="variable">$A</span>[<span class="variable">$i</span>]]==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="variable">$current</span>+=<span class="variable">$A</span>[<span class="variable">$i</span>];</span><br><span class="line">            <span class="variable">$mark</span>[<span class="variable">$A</span>[<span class="variable">$i</span>]]=<span class="number">1</span>;</span><br><span class="line">            if (<span class="variable">$current</span>==<span class="variable">$complete</span>)&#123;</span><br><span class="line">                return <span class="variable">$i</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="https://codility.com/demo/results/trainingBUWSAN-Z2N/" target="_blank" rel="external">https://codility.com/demo/results/trainingBUWSAN-Z2N/</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
         <time datetime="2015-10-27T14:58:25.000Z"><a href="/2015/10/27/Codility-Counting-Elements-FrogRiverOne-Python/">2015-10-27</a></time>
       
       
@@ -394,6 +360,40 @@
 
 
 
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-10-25T10:33:10.000Z"><a href="/2015/10/25/Codility-Time-Complexity-TapeEquilibrium-Python/">2015-10-25</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/10/25/Codility-Time-Complexity-TapeEquilibrium-Python/">Codility-Time Complexity-TapeEquilibrium-Python</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">def solution(A):</span><br><span class="line">    <span class="literal">result</span>=[]</span><br><span class="line">    <span class="literal">result</span>.append(<span class="number">0</span>)</span><br><span class="line">    minresult=<span class="number">100000</span>*<span class="number">1000</span></span><br><span class="line">    length=len(A)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="type">range</span>(<span class="number">1</span>,len(A)+<span class="number">1</span>):</span><br><span class="line">        <span class="literal">result</span>.append(<span class="literal">result</span>[i-<span class="number">1</span>]+A[i-<span class="number">1</span>])</span><br><span class="line">    sum=<span class="literal">result</span>[len(A)]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="type">range</span>(<span class="number">1</span>,len(A)):</span><br><span class="line">        diff=sum-<span class="literal">result</span>[i]</span><br><span class="line">        tempresult=<span class="literal">result</span>[i]-diff</span><br><span class="line">        <span class="keyword">if</span> abs(tempresult)&lt;minresult:</span><br><span class="line">            minresult=abs(tempresult)</span><br><span class="line">    <span class="keyword">return</span> minresult</span><br></pre></td></tr></table></figure> 
+<p><a href="https://codility.com/demo/results/trainingFP7G9M-F6A/" target="_blank" rel="external">https://codility.com/demo/results/trainingFP7G9M-F6A/</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
 
 <nav id="pagination">
   
@@ -426,7 +426,7 @@
   <div class="widget tag">
     <h3 class="title">Archives</h3>
     <div class="entry">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">Februar 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">Oktober 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">Oktober 2012</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">Februar 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">Oktober 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/10/">Oktober 2012</a></li></ul>
     </div>
   </div>
 
@@ -449,10 +449,6 @@
   <ul class="entry">
     
       <li>
-        <a href="/2016/08/07/RHEL-7-differences-with-6/">RHEL 7 differences with 6</a>
-      </li>
-    
-      <li>
         <a href="/2016/02/09/RHEL-7/">RHEL 7 new build</a>
       </li>
     
@@ -466,6 +462,10 @@
     
       <li>
         <a href="/2016/02/07/cleaned-up-blog-repo/">cleaned up blog repo</a>
+      </li>
+    
+      <li>
+        <a href="/2016/02/07/githug/">githug</a>
       </li>
     
   </ul>
