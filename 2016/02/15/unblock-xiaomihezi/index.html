@@ -3,15 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>mobile app for ordering in restaurant | katze&#39;s bits and bytes</title>
+  <title>unblock xiaomihezi | katze&#39;s bits and bytes</title>
   <meta name="author" content="Keshi Tan">
   
-  <meta name="description" content="Was discussing with ww about making a mobile app for searching foreign language words on restaurant menu.Languages can include Chinese, English, Japan">
+  <meta name="description" content="tasks:
+- sysctl: name=&amp;quot;net.ipv4.ip_forward&amp;quot; value=1 sysctl_set=yes state=present reload=yes
+- shell: iptables -t nat -A POSTROUTING -s 192.1">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="mobile app for ordering in restaurant"/>
+  <meta property="og:title" content="unblock xiaomihezi"/>
   <meta property="og:site_name" content="katze&#39;s bits and bytes"/>
 
   
@@ -61,18 +63,21 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2012-10-27T04:00:00.000Z"><a href="/2012/10/27/2012-10-27-ordering-in-restaurant/">2012-10-27</a></time>
+        <time datetime="2016-02-16T00:39:52.000Z"><a href="/2016/02/15/unblock-xiaomihezi/">2016-02-15</a></time>
       
       
   
-    <h1 class="title">mobile app for ordering in restaurant</h1>
+    <h1 class="title">unblock xiaomihezi</h1>
   
 
     </header>
     <div class="entry">
       
-        <p>Was discussing with ww about making a mobile app for searching foreign language words on restaurant menu.<br>Languages can include Chinese, English, Japanese, French, German, Italian, Thai, Malay, Hindi, Tamil.</p>
-<p>It will be offline app, with irregular vocab updates pushed to clients.</p>
+        <p>  tasks:</p>
+<pre><code>- sysctl: name=&quot;net.ipv4.ip_forward&quot; value=1 sysctl_set=yes state=present reload=yes
+- shell: iptables -t nat -A POSTROUTING -s 192.168.1.246 -j SNAT --to-source 120.192.0.10
+- shell: iptables -t nat -A OUTPUT -d 120.192.0.10 -j DNAT --to-destination 192.168.1.246
+</code></pre><p>  341  systemctl stop firewalld<br>  342  systemctl disable firewalld<br>  343  systemctl start iptables<br>  344  systemctl start iptable<br>  345  yum install iptables-services<br>  346  systemctl start iptables<br>  347  systemctl enable iptables</p>
 
       
     </div>
@@ -80,6 +85,11 @@
       
         
         
+  
+  <div class="tags">
+    <a href="/tags/Linux/">Linux</a>, <a href="/tags/iptables/">iptables</a>, <a href="/tags/network/">network</a>
+  </div>
+
         
   <div class="addthis addthis_toolbox addthis_default_style">
     
@@ -120,7 +130,7 @@
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<div class="fb-comments" data-href="http://katze120.github.io/2012/10/27/2012-10-27-ordering-in-restaurant/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+<div class="fb-comments" data-href="http://katze120.github.io/2016/02/15/unblock-xiaomihezi/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
       
   
 </section>

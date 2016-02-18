@@ -60,6 +60,43 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2016-02-16T00:39:52.000Z"><a href="/2016/02/15/unblock-xiaomihezi/">2016-02-15</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2016/02/15/unblock-xiaomihezi/">unblock xiaomihezi</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>  tasks:</p>
+<pre><code>- sysctl: name=&quot;net.ipv4.ip_forward&quot; value=1 sysctl_set=yes state=present reload=yes
+- shell: iptables -t nat -A POSTROUTING -s 192.168.1.246 -j SNAT --to-source 120.192.0.10
+- shell: iptables -t nat -A OUTPUT -d 120.192.0.10 -j DNAT --to-destination 192.168.1.246
+</code></pre><p>  341  systemctl stop firewalld<br>  342  systemctl disable firewalld<br>  343  systemctl start iptables<br>  344  systemctl start iptable<br>  345  yum install iptables-services<br>  346  systemctl start iptables<br>  347  systemctl enable iptables</p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2016-02-10T02:22:15.000Z"><a href="/2016/02/09/RHEL-7/">2016-02-09</a></time>
       
       
@@ -299,7 +336,9 @@ hexo d -g</pre>
 
 </li>
 </ul>
-<p>I now finally understand hexo root directory itself is not a git repo, but .deploygit is.<br>Also, only generated static html files in public directory is uploaded to the git repo defined in hexo _config.yml, the raw .md, _config.yml files, and other raw files are not. Hence, I’ve also made a wrapper to backup the .md files and _config.yml files which I consider important.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span></span><br><span class="line"><span class="built_in">cd</span> `dirname <span class="variable">$0</span>`</span><br><span class="line">hexo generate</span><br><span class="line"></span><br><span class="line"><span class="comment"># backup source files</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> <span class="operator">-d</span> public/<span class="built_in">source</span>_backup</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    rm -rf public/<span class="built_in">source</span>_backup</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">cp -r <span class="built_in">source</span>/ public/<span class="built_in">source</span>_backup</span><br><span class="line"></span><br><span class="line"><span class="comment"># backup config files</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> <span class="operator">-d</span> public/config_backup</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    rm -rf public/config_backup</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line">mkdir public/config_backup</span><br><span class="line">cp -p _config.yml public/config_backup</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> `ls themes`</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    cp -p themes/<span class="variable">$&#123;i&#125;</span>/_config.yml public/config_backup/<span class="variable">$&#123;i&#125;</span>_config.yml</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure><br>I customize some templates in theme directory too, ideally those should also be backed up. But I’m OK for my blog to change appearance once a while hence I intentially did not backup those.</p>
+<p>Steps to setup blogging environment is now recorded in an Ansible playbook: <a href="https://github.com/katze120/ansible/blob/master/blog.yml" target="_blank" rel="external">https://github.com/katze120/ansible/blob/master/blog.yml</a></p>
+<p>I now finally understand hexo root directory itself is not a git repo, but .deploygit is.<br>Also, only generated static html files in public directory is uploaded to the git repo defined in hexo _config.yml, the raw .md, _config.yml files, and other raw files are not. I customize some templates in theme directory too.</p>
+<p>Hence, I’ve also made a wrapper to backup the .md files and _config.yml files, themes, to another git repo: <a href="https://github.com/katze120/katze120.github.io_backup" target="_blank" rel="external">https://github.com/katze120/katze120.github.io_backup</a></p>
 
       
     </div>
@@ -665,40 +704,6 @@ git commit
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="icon"></div>
-        <time datetime="2015-10-27T15:08:40.000Z"><a href="/2015/10/27/Codility-Counting-Elements-FrogRiverOne-Perl/">2015-10-27</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2015/10/27/Codility-Counting-Elements-FrogRiverOne-Perl/">Codility-Counting Elements-FrogRiverOne-Perl</a></h1>
-  
-
-    </header>
-    <div class="entry">
-      
-        <figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">sub solution &#123;</span><br><span class="line">    my (<span class="variable">$X</span>, @A)=@<span class="number">_</span>;</span><br><span class="line">    my <span class="variable">$complete</span>=<span class="variable">$X</span>*(<span class="variable">$X</span>+<span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line">    my <span class="variable">$current</span>=<span class="number">0</span>;</span><br><span class="line">    my <span class="variable">$mark</span>=();</span><br><span class="line">    for (my <span class="variable">$i</span>=<span class="number">1</span>; <span class="variable">$i</span>&lt;=<span class="variable">$X</span>; <span class="variable">$i</span>++)&#123;</span><br><span class="line">        <span class="variable">$mark</span>=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    for (my <span class="variable">$i</span>=<span class="number">0</span>; <span class="variable">$i</span>&lt;scalar(@A); <span class="variable">$i</span>++)&#123;</span><br><span class="line">        if (<span class="variable">$mark</span>[<span class="variable">$A</span>[<span class="variable">$i</span>]]==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="variable">$current</span>+=<span class="variable">$A</span>[<span class="variable">$i</span>];</span><br><span class="line">            <span class="variable">$mark</span>[<span class="variable">$A</span>[<span class="variable">$i</span>]]=<span class="number">1</span>;</span><br><span class="line">            if (<span class="variable">$current</span>==<span class="variable">$complete</span>)&#123;</span><br><span class="line">                return <span class="variable">$i</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="https://codility.com/demo/results/trainingBUWSAN-Z2N/" target="_blank" rel="external">https://codility.com/demo/results/trainingBUWSAN-Z2N/</a></p>
-
-      
-    </div>
-    <footer>
-      
-        
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -741,7 +746,7 @@ git commit
 <div class="widget tagcloud">
   <h3 class="title">Tag-Cloud</h3>
   <div class="entry">
-    <a href="/tags/Codility/" style="font-size: 20px;">Codility</a> <a href="/tags/Java/" style="font-size: 17.5px;">Java</a> <a href="/tags/Linux/" style="font-size: 17.5px;">Linux</a> <a href="/tags/NSX/" style="font-size: 10px;">NSX</a> <a href="/tags/NetworkManager/" style="font-size: 10px;">NetworkManager</a> <a href="/tags/Perl/" style="font-size: 17.5px;">Perl</a> <a href="/tags/Python/" style="font-size: 17.5px;">Python</a> <a href="/tags/RHEL7/" style="font-size: 17.5px;">RHEL7</a> <a href="/tags/Redhat/" style="font-size: 17.5px;">Redhat</a> <a href="/tags/SDN/" style="font-size: 10px;">SDN</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/ansible/" style="font-size: 10px;">ansible</a> <a href="/tags/configuration-management/" style="font-size: 10px;">configuration management</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/openstack/" style="font-size: 15px;">openstack</a> <a href="/tags/systemd/" style="font-size: 10px;">systemd</a> <a href="/tags/xfs/" style="font-size: 10px;">xfs</a>
+    <a href="/tags/Codility/" style="font-size: 20px;">Codility</a> <a href="/tags/Java/" style="font-size: 16px;">Java</a> <a href="/tags/Linux/" style="font-size: 18px;">Linux</a> <a href="/tags/NSX/" style="font-size: 10px;">NSX</a> <a href="/tags/NetworkManager/" style="font-size: 10px;">NetworkManager</a> <a href="/tags/Perl/" style="font-size: 16px;">Perl</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/RHEL7/" style="font-size: 16px;">RHEL7</a> <a href="/tags/Redhat/" style="font-size: 16px;">Redhat</a> <a href="/tags/SDN/" style="font-size: 10px;">SDN</a> <a href="/tags/VMware/" style="font-size: 10px;">VMware</a> <a href="/tags/ansible/" style="font-size: 10px;">ansible</a> <a href="/tags/configuration-management/" style="font-size: 10px;">configuration management</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/iptables/" style="font-size: 10px;">iptables</a> <a href="/tags/network/" style="font-size: 10px;">network</a> <a href="/tags/openstack/" style="font-size: 14px;">openstack</a> <a href="/tags/systemd/" style="font-size: 10px;">systemd</a> <a href="/tags/xfs/" style="font-size: 10px;">xfs</a>
   </div>
 </div>
 
@@ -750,6 +755,10 @@ git commit
 <div class="widget tag">
   <h3 class="title">Neueste Artikel</h3>
   <ul class="entry">
+    
+      <li>
+        <a href="/2016/02/15/unblock-xiaomihezi/">unblock xiaomihezi</a>
+      </li>
     
       <li>
         <a href="/2016/02/09/RHEL-7/">RHEL 7 new build</a>
@@ -765,10 +774,6 @@ git commit
     
       <li>
         <a href="/2016/02/07/cleaned-up-blog-repo/">cleaned up blog repo</a>
-      </li>
-    
-      <li>
-        <a href="/2016/02/07/githug/">githug</a>
       </li>
     
   </ul>
