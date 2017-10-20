@@ -3,13 +3,15 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archiv: 2012/10 | katze&#39;s bits and bytes</title>
+  <title>Codility-BinaryGap-Python.md | katze&#39;s bits and bytes</title>
   <meta name="author" content="Keshi Tan">
+  
+  <meta name="description" content="12345678910111213141516171819import mathdef solution(N):    #N = 16    current_count = 0    longest = 0    start = 0    while N&amp;gt;0:        if N%2 ==">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  
+  <meta property="og:title" content="Codility-BinaryGap-Python.md"/>
   <meta property="og:site_name" content="katze&#39;s bits and bytes"/>
 
   
@@ -53,37 +55,81 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title">2012/10</h2>
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2017-10-20T15:17:36.000Z"><a href="/2017/10/20/Codility-BinaryGap-Python-md/">2017-10-20</a></time>
+      
+      
+  
+    <h1 class="title">Codility-BinaryGap-Python.md</h1>
+  
 
+    </header>
+    <div class="entry">
+      
+        <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solution</span><span class="params">(N)</span>:</span></span><br><span class="line">    <span class="comment">#N = 16</span></span><br><span class="line">    current_count = <span class="number">0</span></span><br><span class="line">    longest = <span class="number">0</span></span><br><span class="line">    start = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> N&gt;<span class="number">0</span>:</span><br><span class="line">        <span class="keyword">if</span> N%<span class="number">2</span> == <span class="number">0</span>: </span><br><span class="line">            <span class="keyword">if</span> start == <span class="number">1</span>:</span><br><span class="line">                current_count += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            start = <span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> current_count &gt; longest:</span><br><span class="line">                longest = current_count</span><br><span class="line">            current_count = <span class="number">0</span></span><br><span class="line">        N = math.floor(N/<span class="number">2</span>)</span><br><span class="line">        <span class="comment">#print ("N ", N, "; current_count ",current_count, "start ", start, "N%2", N%2)</span></span><br><span class="line">    <span class="keyword">return</span> longest</span><br></pre></td></tr></table></figure> 
+<p><a href="https://codility.com/demo/results/training9764W7-KTQ/" target="_blank" rel="external">https://codility.com/demo/results/training9764W7-KTQ/</a></p>
 
-  <div class="archive">
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2012-10-27T04:00:00.000Z"><a href="/2012/10/27/2012-10-27-ordering-in-restaurant/">2012-10-27</a></time>
-            
-              <h1 class="title"><a href="/2012/10/27/2012-10-27-ordering-in-restaurant/">mobile app for ordering in restaurant</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2012-10-24T04:00:00.000Z"><a href="/2012/10/24/2012-10-24-beginning/">2012-10-24</a></time>
-            
-              <h1 class="title"><a href="/2012/10/24/2012-10-24-beginning/">my technical blog!</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/Codility/">Codility</a>, <a href="/tags/Python/">Python</a>
   </div>
+
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Kommentare</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://katze120.github.io/2017/10/20/Codility-BinaryGap-Python-md/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
+</section>
+
 </div></div>
     <aside id="sidebar" class="alignright">
   
